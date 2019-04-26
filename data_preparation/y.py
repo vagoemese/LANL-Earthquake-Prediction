@@ -16,7 +16,9 @@ import pandas as pd
 # Read the df with the index of failures
 fault_idx = pd.read_hdf('../generated_data/fault_idx.h5')
 rows = 150000
-
+train = pd.read_hdf('C:/Kaggle/LANL/train.h5')
+train_length  = train.shape[0]
+                  
 cycle = 0
 for cycle in range(fault_idx.shape[0] + 1):
     if cycle == 0:
@@ -24,7 +26,7 @@ for cycle in range(fault_idx.shape[0] + 1):
     else:
         start_index = fault_idx['idx'][cycle - 1] + 1
     if cycle == 16:
-        end_index = train.shape[0]
+        end_index = train_length
     else:
         end_index = fault_idx['idx'][cycle]
     
